@@ -43,10 +43,10 @@ resource "aws_s3_bucket" "alb_log" {
 
   lifecycle_rule {
     enabled = true
-  }
 
-  expiration {
-    days = "180"
+    expiration {
+      days = "180"
+    }
   }
 }
 

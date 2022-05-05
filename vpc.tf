@@ -1,5 +1,5 @@
 # VPC
-resource "awx_vpc" "example" {
+resource "aws_vpc" "example" {
   cidr_block = "10.0.0.0/16"
   enable_dns_support = true
   enable_dns_hostnames = true
@@ -73,27 +73,27 @@ resource "aws_subnet" "private_1" {
 # プライベートサブネット0のEIP
 resource "aws_eip" "nat_gateway_0" {
   vpc = true
-  dependes_on = [aws_internet_gateway.example] # インターネットゲートウェイ作成後に、EIPを作成するよう保障
+  depends_on = [aws_internet_gateway.example] # インターネットゲートウェイ作成後に、EIPを作成するよう保障
 }
 
 # プライベートサブネット1のEIP
 resource "aws_eip" "nat_gateway_1" {
   vpc = true
-  dependes_on = [aws_internet_gateway.example]
+  depends_on = [aws_internet_gateway.example]
 }
 
 # プライベートサブネット0のNATゲートウェイ
 resource "aws_nat_gateway" "nat_gateway_0" {
   allocation_id = aws_eip.nat_gateway_0.id
-  subnet_id = aws_subnet.publicy_0.id
-  dependes_on = [aws_internet_gateway.example] # インターネットゲートウェイ作成後に、NATゲートウェイを作成するよう保障
+  subnet_id = aws_subnet.public_0.id
+  depends_on = [aws_internet_gateway.example] # インターネットゲートウェイ作成後に、NATゲートウェイを作成するよう保障
 }
 
 # プライベートサブネット1のNATゲートウェイ
 resource "aws_nat_gateway" "nat_gateway_1" {
   allocation_id = aws_eip.nat_gateway_1.id
   subnet_id = aws_subnet.public_1.id
-  dependes_on = [aws_internet_gateway.example]
+  depends_on = [aws_internet_gateway.example]
 }
 
 # プライベートサブネット0のルートテーブル
