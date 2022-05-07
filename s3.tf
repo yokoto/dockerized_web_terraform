@@ -1,6 +1,6 @@
 # プライベートバケット
 resource "aws_s3_bucket" "private" {
-  bucket = "private-pragmatic-terraform"
+  bucket = "private-pragmatic-terraform-yokota"
 
   versioning {
     enabled = true
@@ -26,7 +26,7 @@ resource "aws_s3_bucket_public_access_block" "private" {
 
 # パブリックバケット
 resource "aws_s3_bucket" "public" {
-  bucket = "public-pragmatic-terraform"
+  bucket = "public-pragmatic-terraform-yokota"
   acl = "public-read"
 
   cors_rule {
@@ -39,7 +39,7 @@ resource "aws_s3_bucket" "public" {
 
 # ログローテーションバケット
 resource "aws_s3_bucket" "alb_log" {
-  bucket = "alb-log-pragmatic-terraform"
+  bucket = "alb-log-pragmatic-terraform-yokota"
 
   lifecycle_rule {
     enabled = true

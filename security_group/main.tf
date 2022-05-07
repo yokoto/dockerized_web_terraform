@@ -26,7 +26,7 @@ resource "aws_security_group_rule" "ingress" {
   from_port = var.port # 通信を許可するポート番号
   to_port = var.port
   protocol = "tcp"
-  cidr_blocks = var.cidr_blocks # # 通信を許可するCIDRブロック
+  cidr_blocks = var.cidr_blocks # 通信を許可する送信元のCIDRブロック https://qiita.com/yokoto/items/338bd80262d9eefb152e
   security_group_id = aws_security_group.default.id
 }
 
